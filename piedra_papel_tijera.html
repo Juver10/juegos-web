@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Piedra, Papel o Tijera</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; text-align: center; padding: 2em; background: linear-gradient(to right, #ffe259, #ffa751); }
+    h1 { color: #333; }
+    button {
+      margin: 1em;
+      padding: 1em 2em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    #resultado { font-size: 1.2em; margin-top: 20px; }
+  </style>
+</head>
+<div style="margin-top: 30px;">
+  <a href="../index.html" style="text-decoration:none;">
+    <button style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 8px; background-color: #3498db; color: white; margin-right: 10px; cursor: pointer;">
+      🏠 Volver al Menú
+    </button>
+  </a>
+  <button onclick="location.reload()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 8px; background-color: #2ecc71; color: white; cursor: pointer;">
+    🔄 Reiniciar Juego
+  </button>
+</div>
+
+<body>
+  <h1>Piedra, Papel o Tijera</h1>
+  <button onclick="jugar('Piedra')">✊ Piedra</button>
+  <button onclick="jugar('Papel')">✋ Papel</button>
+  <button onclick="jugar('Tijera')">✌️ Tijera</button>
+  <p id="resultado"></p>
+
+  <script>
+    function jugar(eleccionUsuario) {
+      const opciones = ['Piedra', 'Papel', 'Tijera'];
+      const eleccionCPU = opciones[Math.floor(Math.random() * 3)];
+      let resultado = '';
+      if (eleccionUsuario === eleccionCPU) {
+        resultado = '¡Empate! Ambos eligieron ' + eleccionUsuario;
+      } else if (
+        (eleccionUsuario === 'Piedra' && eleccionCPU === 'Tijera') ||
+        (eleccionUsuario === 'Papel' && eleccionCPU === 'Piedra') ||
+        (eleccionUsuario === 'Tijera' && eleccionCPU === 'Papel')
+      ) {
+        resultado = '¡Ganaste! CPU eligió ' + eleccionCPU;
+      } else {
+        resultado = 'Perdiste. CPU eligió ' + eleccionCPU;
+      }
+      document.getElementById('resultado').textContent = resultado;
+    }
+  </script>
+</body>
+</html>
